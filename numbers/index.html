@@ -1,0 +1,140 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<!--+===================================================================+
+	 					 			header
+	+====================================================================+-->
+	<title>    </title>
+
+	<!--+=========+
+	  	 metadata
+	+==========+-->
+	<meta charset="UTF-8">
+	<meta name="author" content="  ">
+	<meta name="description" content="   ">
+	<meta name="keywords" content="    ">
+
+	<!--+=========+
+	  	 links
+	+==========+-->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,300" rel="stylesheet">
+
+
+	<!--+============================+
+	  			stylesheets
+	+=============================+-->
+	<style>
+
+	#number_display{
+	position:fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Roboto';
+    font-size: 4em;
+    margin: 0px;
+    font-weight:100;
+	}
+
+	#Qmark {
+	position:fixed;
+	bottom: 0px;
+	left: 0.2em;
+	margin: 0px;
+    font-family: 'Roboto';
+    font-size: 1em;
+    font-weight: 300;
+	}
+
+	#ExplanationText {
+	z-index: 2;
+	top: -30vw;
+	left: 0.5em;
+	padding:0.1em;
+	position:fixed;
+	font-size: 1em;
+	font-weight: 300;
+	width:100%;
+	font-family: 'Roboto';
+	}
+	#ExplanationText p {
+	margin:0px;
+	font-family: 'Roboto';
+	}
+	.val:focus {
+	outline:none;
+	}
+	.val {
+	border: 0px;
+	font-size: 1em;
+	font-weight: 300;
+	font-family: 'Roboto';
+	width:100px;
+
+	}
+
+	</style>
+
+</head>
+
+<body>
+	<!--+===================================================================+
+	 					 			body
+	+====================================================================+-->
+	<div id='wrapper'>
+		<h1 id='number_display'>?</h1>
+	</div>
+
+	<h1 id='Qmark' onclick='functio()'>?</h1>
+
+	<div id='ExplanationText' class='OverlayClass'>
+		<p>This is a random number Generator<br>
+		It generates a number from 1 to <input  onkeyup='setnew()' maxlength='10' class='val' value='2' id='maxval'></input><br>
+		Refresh the page to generate a new number.
+		</p>
+	</div>
+
+
+
+	<!--+============================+
+	  			javascript
+	+=============================+-->
+	<script>
+	var Options = 0;
+
+	document.getElementById('maxval').value = localStorage.getItem("N");
+
+	function Random_Number_Generation(Max) {
+		var Random_Number = Math.ceil(Math.random() * Max);
+		document.getElementById('number_display').innerHTML = Random_Number;
+	};
+	
+
+	function functio() {
+		if (Options == 0) {
+			ExplanationText.style.transitionDuration = '0.2s';
+			ExplanationText.style.top = '0.2vw';
+			Options = 1;
+		} else if (Options == 1) {
+			ExplanationText.style.transitionDuration = '0.5s';
+			ExplanationText.style.top = '-30vw';
+			Options = 0;
+		}
+
+	};
+
+	function setnew() {
+		var num = document.getElementById('maxval').value;
+		localStorage.setItem("N", num);
+
+	};
+
+	Random_Number_Generation(localStorage.getItem("N"));
+
+		
+	
+	</script>
+
+</body>
+</html>
