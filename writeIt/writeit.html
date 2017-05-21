@@ -1,0 +1,178 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>WriteIt</title>
+	<meta charset="UTF-8">
+	<meta name="author" content="Saxon Glaser">
+	<meta name="description" content="A Simple website that allows you a clean distractionless pad to get creative with">
+	<meta name="keywords" content="Write Notes Pad">
+	<style>
+	* {
+	margin:0 auto;
+	overflow-x: hidden;
+	transition-duration: 0.3s;
+	}
+	*::selection{
+	background-color: white;
+	}
+	*::-webkit-scrollbar {
+	display: none;
+	}
+	*::-moz-scrollbar {
+	display: none;
+	}
+	*::-ms-scrollbar {
+	display: none;
+	}
+	*::-o-scrollbar {
+	display: none;
+	}
+
+	#container {
+	text-align: center;
+	font-size: 4em;
+	font-family: 'Futura';
+	color:white;
+	text-shadow: 0.1em 0.1em #000000;
+	font-style: italic;
+	border:none;
+	width: 100%;
+	height:100%;
+	padding:0px;
+	position: absolute;
+	}
+	#container:focus{
+	outline:none;
+	}
+
+	</style>
+
+
+</head>
+
+<body onkeyup="keypress()">
+	<textarea id='container' spellcheck="false"></textarea>
+	<script>
+	if (localStorage.wrds == null)  {
+		localStorage.wrds = '!bff0000 !tffffff !s000000 !f4';
+	}
+	if (localStorage.Bvalue == null)  {
+		localStorage.Bvalue = 'ff0000';
+	}
+	if (localStorage.Tvalue == null)  {
+		localStorage.Tvalue = 'ffffff';
+	}
+	if (localStorage.Svalue == null)  {
+		localStorage.Svalue = '000000';
+	}
+	if (localStorage.Fvalue == null)  {
+		localStorage.Fvalue = '4';
+	}
+
+	document.getElementById('container').value = localStorage.wrds;
+	document.getElementById('container').style.backgroundColor = '#' + localStorage.Bvalue;
+	document.body.style.backgroundColor = '#' + localStorage.Bvalue;
+	document.getElementById('container').style.color = '#' + localStorage.Tvalue;
+	document.getElementById('container').style.textShadow =  '0.1em 0.1em' + '#' +localStorage.Svalue;
+	document.getElementById('container').style.fontSize = localStorage.Fvalue + 'em';
+
+	function keypress() {
+		localStorage.wrds = document.getElementById('container').value;
+		var startB = localStorage.wrds.search('!b');
+		var startT = localStorage.wrds.search('!t');
+		var startS = localStorage.wrds.search('!s');
+		var startF = localStorage.wrds.search('!f');
+
+		var supreme = localStorage.wrds.search('!supreme');
+
+		if (startB != -1) {
+			B(startB);
+		}
+		if (startT != -1) {
+			T(startT);
+		}
+		if (startS != -1) {
+			S(startS);
+		}
+		if (startF != -1) {
+			F(startF);
+		}
+
+		if (supreme != -1) {supremetheme();}
+
+
+	}
+
+	function B(startB) {
+		var Bvalue = localStorage.wrds.substring(startB + 2,startB + 8);
+		if (Bvalue.length == 6) {
+			doB(Bvalue);
+			testforEE()
+		}
+	}
+				function doB(Bvalue) {
+					localStorage.Bvalue = Bvalue ;
+					document.getElementById('container').style.backgroundColor = '#' + Bvalue;
+					document.body.style.backgroundColor = '#' + Bvalue;
+				}
+
+
+	function T(startT) {
+		var Tvalue = localStorage.wrds.substring(startT + 2,startT + 8);
+		if (Tvalue.length == 6) {
+			doT(Tvalue);
+			testforEE();
+		}
+	}
+				function doT(Tvalue) {
+					localStorage.Tvalue = Tvalue;
+					document.getElementById('container').style.color = '#' + Tvalue;
+				}
+
+
+	function S(startS) {
+		var Svalue = localStorage.wrds.substring(startS + 2,startS + 8);
+		if (Svalue.length == 6) {
+			doS(Svalue);
+			testforEE()
+		}
+	}
+				function doS(Svalue) {
+					localStorage.Svalue = Svalue;
+					document.getElementById('container').style.textShadow =  '0.1em 0.1em' + '#' + Svalue;
+				}
+
+
+	function F(startF) {
+		var Fvalue = localStorage.wrds.substring(startF + 2,startF + 3);
+			if (Fvalue.length == 1) {
+				if (Fvalue == '0') {
+				Fvalue = 1;
+				}
+				doF(Fvalue);
+			}
+	}
+				function doF(Fvalue) {
+					localStorage.Fvalue = Fvalue;
+					document.getElementById('container').style.fontSize = Fvalue + 'em';
+				}
+
+	function supremetheme() {
+		doB('ed1c24');
+		doT('ffffff');
+		doS('ed1c24');
+	}
+
+	function testforEE() {
+		if (localStorage.Bvalue == '6e6e6f' && localStorage.Tvalue == '6b616c' && localStorage.Svalue == '616431') {
+			document.getElementById('container').value = 'Saxon';
+		}
+
+	}
+
+
+	</script>
+
+</body>
+</html>
