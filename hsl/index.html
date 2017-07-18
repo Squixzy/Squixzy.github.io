@@ -209,7 +209,11 @@
 	function changeGlobalHue(amount) {
 		if (globalHue >= 360) {
 			globalHue = 0;
-		} else if (globalHue < 0) {
+		} 
+		else if (globalHue == -1) 
+			globalHue = 360;
+		
+		else if (globalHue < 0) {
 			globalHue = 360;
 		}
 		globalHue = globalHue + (amount);}
