@@ -1,0 +1,208 @@
+<!doctype html>
+
+<html lang="en"><head>
+	<title>Chemistry Helper</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+	<style>
+	body {
+
+	}
+	* {
+	font-family: 'Roboto';
+	font-weight: 100;
+
+	}
+	th {
+		border-bottom:1px solid black;
+	}
+	input {
+	font-size: 25px;
+	width:50px;
+	border:0px;
+
+	font-weight: 100;
+	}
+	input:focus {
+	outline:none;
+	}
+	table {
+	margin:0 auto;
+	}
+	#button {
+	padding: 5px;
+	font-size: 19px;
+	background-color: #54A5FF;
+	border-radius: 20px;
+	border:none;
+	color:white;
+	box-shadow: 0px 7px #184678;
+	transition-duration: 0.1s;
+	}
+	#button:active {
+	transform: translateY(7px);
+	box-shadow: 0px 0px;
+	}
+	#button:focus {
+	outline:none;
+	}
+	#title {
+	text-align: center;
+	}
+	#fixed {
+		position: fixed;
+		bottom: 0px;
+	}
+	#killme {
+		font-size: 22px;
+	}
+
+	</style></head><body>
+	<h1 id='title'> Molecular Mass Calculator </h1>
+	<table>
+
+		<tr>
+			<th><input class = 'finda' type="text" ></input></th>
+			<th><input class = 'numberinputtype' type="number" ></input></th>
+		</tr>
+				<tr>
+			<th><input class = 'finda' type="text" ></input></th>
+			<th><input class = 'numberinputtype' type="number"></input></th>
+		</tr>
+				<tr>
+			<th><input class = 'finda' type="text" ></input></th>
+			<th><input class = 'numberinputtype' type="number"></input></th>
+		</tr>
+				<tr>
+			<th><input class = 'finda' type="text" ></input></th>
+			<th><input class = 'numberinputtype' type="number" ></input></th>
+		</tr>
+				<tr>
+			<th><input class = 'finda' type="text" ></input></th>
+			<th><input class = 'numberinputtype' type="number"></input></th>
+		</tr>
+				<tr>
+			<th><input class = 'finda' type="text" ></input></th>
+			<th><input class = 'numberinputtype' type="number"></input></th>
+		</tr>
+
+
+	</table>
+	<div id='fixed'>
+		<button onclick='calculate()' id='button'>Calculate</button>
+		<h1 id='killme'> Molecular Weight is:</h1>
+	</div>
+
+	<script>//FUCK THIS IM GONNA CODE IT LIKE A RETARD 
+	var tr = document.createElement('tr');
+	var th = document.createElement('th');
+	var input = document.createElement('input');
+
+	var elements = {
+		H:1.008,
+		He:4.003,
+		Li:6.941,
+		Be:9.012,
+		B:10.81,
+		C:12.01,
+		N:14.01,
+		O:16.00,
+		F:19.00,
+		Ne:20.18,
+		Na:22.99,
+		Mg:24.31,
+		Al:26.98,
+		Si:28.09,
+		P:30.97,
+		S:32.07,
+		Cl:35.45,
+		Ar:39.95,
+		K:39.10,
+		Ca:40.08,
+		Sc:44.96,
+		Ti:47.87,
+		V:50.94,
+		Cr:52.00,
+		Mn:54.94,
+		Fe:55.85,
+		Co:58.93,
+		Ni:58.69,
+		Cu:63.55,
+		Zn:65.38,
+		Ga:69.72,
+		Ge:72.64,
+		As:74.92,
+		Se:96.96,
+		Br:79.90,
+		Kr:83.80,
+		Rb:85.47,
+		Sr:87.61,
+		Y:88.91,
+		Zr:91.22,
+		Nb:92.91,
+		Mo:95.96,
+		Ru:101.1,
+		Rh:102.9,
+		Pd:106.4,
+		Ag:107.9,
+		Cd:112.4,
+		In:114.8,
+		Sn:118.7,
+		Sb:121.8,
+		Te:127.6,
+		I:126.9,
+		Xe:131.3,
+		Cs:132.9,
+		Ba:137.3,
+		Hf:178.5,
+		Ta:180.9,
+		W:183.9,
+		Re:186.2,
+		Os:190.2,
+		Ir:192.2,
+		Pt:195.1,
+		Au:197.0,
+		Hg:200.6,
+		Tl:204.4,
+		Pb:207.2,
+		Bi:209.0,
+		La:138.9,
+		Ce:140.1,
+		Pr:140.9,
+		Nd:144.2,
+		Sm:150.4,
+		Eu:152.0,
+		Gd:157.3,
+		Tb:158.9,
+		Dy:162.5,
+		Ho:164.9,
+		Er:167.3,
+		Tm:168.9,
+		Yb:173.1,
+		Lu:175.0,
+		Th:232.0,
+		Pa:231.0,
+		U:238.0,
+	}
+
+
+	var uglyglobaltotal = 0;
+
+	function calculate() {
+		allthoesfuckers = document.getElementsByClassName('finda');
+		allthesefukkers = document.getElementsByClassName('numberinputtype');
+		for (i = 0; i < allthesefukkers.length; i++) {
+			if (allthesefukkers[i].value > 0) {
+				tempfunc(allthoesfuckers[i].value,allthesefukkers[i].value);
+		        
+			}
+		}
+		document.getElementById('killme').innerHTML = 'Molecular Weight is: ' + uglyglobaltotal;
+		uglyglobaltotal = 0;
+	}
+	function tempfunc(a,b) {
+		var elementtotal = elements[a] * b;
+		uglyglobaltotal = uglyglobaltotal + elementtotal;
+
+	}
+
+	</script></body></html>
