@@ -196,7 +196,7 @@
 		        
 			}
 		}
-		document.getElementById('killme').innerHTML = 'Molecular Weight is: ' + uglyglobaltotal;
+		document.getElementById('killme').innerHTML = 'Molecular Weight is: ' + round(uglyglobaltotal,4);
 		uglyglobaltotal = 0;
 	}
 	function tempfunc(a,b) {
@@ -204,5 +204,10 @@
 		uglyglobaltotal = uglyglobaltotal + elementtotal;
 
 	}
+	function round(value, decimals) {
+  		return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+	}
+
+round(1.005, 2);
 
 	</script></body></html>
