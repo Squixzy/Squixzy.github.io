@@ -65,7 +65,7 @@
 		height:100px
 	}
 	</style></head><body>
-	<h1 id='title'> Saxon's Molecular Mass Calculator </h1>
+	<h1 id='title'> Molar Mass Calculator </h1>
 	<table>
 
 		<tr>
@@ -97,12 +97,12 @@
 	</table>
 		<br>
 		<div id='desc'>
-			<h4> Add the symbol of each element in the box on the right and the amount of times it appears in the molecule on the left. <br><br>For multiple Elements, add another row, as seen below:</h4>
+			<h4> Add the symbol of each element in the box on the right and the amount of times it appears, on the left. <br><br>For multiple Elements, add another row, as seen below:</h4>
 			<img id='tut' src='hi.png'>
 		</div>
 	<div id='fixed'>
 		<button onclick='calculate()' id='button'>Calculate</button>
-		<h1 id='killme'> Molecular Weight is:</h1>
+		<h1 id='killme'> Molar Mass is:</h1>
 	</div>
 
 	<script>//FUCK THIS IM GONNA CODE IT LIKE A RETARD 
@@ -208,7 +208,7 @@
 		        
 			}
 		}
-		document.getElementById('killme').innerHTML = 'Molecular Weight is: ' + round(uglyglobaltotal,4);
+		document.getElementById('killme').innerHTML = 'Molar Mass is: ' + round(uglyglobaltotal,4);
 		uglyglobaltotal = 0;
 	}
 	function tempfunc(a,b) {
