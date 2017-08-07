@@ -30,7 +30,7 @@
 	}
 	#button {
 	padding: 5px;
-	font-size: 19px;
+	font-size: 17px;
 	background-color: #54A5FF;
 	border-radius: 20px;
 	border:none;
@@ -55,38 +55,51 @@
 	#killme {
 		font-size: 22px;
 	}
-
+	#desc {
+		margin:0 auto;
+		width: 50%;
+		text-align: center;
+	}
+	#tut {
+		width: 100px;
+		height:100px
+	}
 	</style></head><body>
-	<h1 id='title'> Molecular Mass Calculator </h1>
+	<h1 id='title'> Saxon's Molecular Mass Calculator </h1>
 	<table>
 
 		<tr>
-			<th><input class = 'finda' type="text" ></input></th>
+			<th><input maxlength="2" class = 'finda' type="text" ></input></th>
 			<th><input class = 'numberinputtype' type="number" ></input></th>
 		</tr>
 				<tr>
-			<th><input class = 'finda' type="text" ></input></th>
+			<th><input maxlength="2" class = 'finda' type="text" ></input></th>
 			<th><input class = 'numberinputtype' type="number"></input></th>
 		</tr>
 				<tr>
-			<th><input class = 'finda' type="text" ></input></th>
+			<th><input maxlength="2" class = 'finda' type="text" ></input></th>
 			<th><input class = 'numberinputtype' type="number"></input></th>
 		</tr>
 				<tr>
-			<th><input class = 'finda' type="text" ></input></th>
+			<th><input maxlength="2" class = 'finda' type="text" ></input></th>
 			<th><input class = 'numberinputtype' type="number" ></input></th>
 		</tr>
 				<tr>
-			<th><input class = 'finda' type="text" ></input></th>
+			<th><input maxlength="2" class = 'finda' type="text" ></input></th>
 			<th><input class = 'numberinputtype' type="number"></input></th>
 		</tr>
 				<tr>
-			<th><input class = 'finda' type="text" ></input></th>
+			<th><input maxlength="2" class = 'finda' type="text" ></input></th>
 			<th><input class = 'numberinputtype' type="number"></input></th>
 		</tr>
 
 
 	</table>
+		<br>
+		<div id='desc'>
+			<h4> Add the symbol of each element in the box on the right and the amount of times it appears in the molecule on the left. <br><br>For multiple Elements, add another row, as seen below:</h4>
+			<img id='tut' src='hi.png'>
+		</div>
 	<div id='fixed'>
 		<button onclick='calculate()' id='button'>Calculate</button>
 		<h1 id='killme'> Molecular Weight is:</h1>
@@ -183,7 +196,6 @@
 		Pa:231.0,
 		U:238.0,
 	}
-
 
 	var uglyglobaltotal = 0;
 
