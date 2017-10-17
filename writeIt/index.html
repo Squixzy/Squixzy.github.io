@@ -54,9 +54,7 @@
 <body onkeyup="keypress()">
 	<textarea id='container' spellcheck="false"></textarea>
 	<script>
-	if (localStorage.wrds == null)  {
-		localStorage.wrds = '!bff0000 !tffffff !s000000 !f4';
-	}
+
 	if (localStorage.Bvalue == null)  {
 		localStorage.Bvalue = 'ff0000';
 	}
@@ -70,7 +68,7 @@
 		localStorage.Fvalue = '4';
 	}
 
-	document.getElementById('container').value = localStorage.wrds;
+
 	document.getElementById('container').style.backgroundColor = '#' + localStorage.Bvalue;
 	document.body.style.backgroundColor = '#' + localStorage.Bvalue;
 	document.getElementById('container').style.color = '#' + localStorage.Tvalue;
@@ -96,8 +94,6 @@
 		if (startF != -1) {
 			F(startF);
 		}
-
-		if (supreme != -1) {supremetheme();}
 
 
 	}
