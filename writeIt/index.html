@@ -84,8 +84,6 @@
 		var startS = localStorage.wrds.search('!s');
 		var startF = localStorage.wrds.search('!f');
 
-		var supreme = localStorage.wrds.search('!supreme');
-
 		if (startB != -1) {
 			B(startB);
 		}
@@ -157,12 +155,6 @@
 					localStorage.Fvalue = Fvalue;
 					document.getElementById('container').style.fontSize = Fvalue + 'em';
 				}
-
-	function supremetheme() {
-		doB('ed1c24');
-		doT('ffffff');
-		doS('ed1c24');
-	}
 
 	function testforEE() {
 		if (localStorage.Bvalue == '6e6e6f' && localStorage.Tvalue == '6b616c' && localStorage.Svalue == '616431') {
