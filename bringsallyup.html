@@ -3,12 +3,15 @@
 <html lang="en">
 <head>
 	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-  <meta charset="utf-8">
+  <meta chartimer = set="utf-8">
 
   <title>Bring Sally Up</title>
   <meta name="mobile-web-app-capable" content="yes">
   <style>
   * {
+  	margin:0 auto;
+  }
+  body {
   margin:0 auto;
   background-color:#efebe3; 
   user-select: none;
@@ -20,12 +23,25 @@
   			font-weight: 400;
   			margin: 10px;
   }
-  #container {
+  #tits {
+  			color:white;
+  			opacity:0;
+  			font-size: 4em;
+  			font-family: 'Roboto';
+  			font-weight: 400;
+  			margin: 10px;
+  			background-color: none;
+  			z-index: 100;
+  			transition-duration: 1;
+  			text-align:center;
+  }
+  .container {
   	 		top: 50%;
 		    left: 50%;
 		    position: fixed;
 		   	transform: translate(-50%, -50%);
 		    -webkit-transform: translate(-50%, -50%);
+		    background-color: none;
   }
   #button {
   			display: block;
@@ -90,6 +106,34 @@
   left:0px;
   transition-duration:202s;
   }
+  #endcard{
+  position:fixed;
+  width:0%;
+  height:100%;
+  background-color: black;
+  left:0px;
+  transition-duration:0.5s;
+  transition-timing-function: linear;
+  }
+  #cross {
+  color:white;
+  position: fixed;
+  opacity:0;
+  font-size: 6em;
+  font-family:'Roboto';
+  font-weight: 400;
+  margin: 10px;
+  right:0.5em;
+  transition-duration: 1s;
+  }
+  #placeender{
+  position:fixed;
+  width:100%;
+  height:0%;
+  background-color: #efebe3;
+  bottom:0px;
+  transition-duration:0.5s;
+  }
 
   </style>
   
@@ -98,22 +142,31 @@
 
 
 <body>
-<div id='container'>
+<div id='starter' class='container'>
 <h1 id='title'>Sally Up Timer</h1>
-<button id='button' onclick='start()'>Begin</button>
+<button id='button' onclick='start();'>Begin</button>
 </div>
-<div id='up'></div>
 
+<div id='up'></div>
 <div id='down'></div>
 <div id='progress'> </div>
-<h1 id='back'> up</h1>
-
-
+<div id='endcard'> </div>
+						<h1 id='back'> up</h1>
+<div id='endcard'> </div>
+<div id='ender' class='container'>
+<h1 id='tits'></h1>
+</div>
+<h1 id='cross' onclick="close();">×</h1>
+<div id='placeender'></div>
 
   <script>
 
-  document.documentElement.requestFullscreen();
+  document.getElementById("cross").onclick = close;
+  document.getElementById("up").onclick = done;
+  document.getElementById("down").onclick = done;
   var secondsover10;
+  var timer;
+  var interval;
 
   function transition(x) {
   	if (x == 1) {
@@ -133,20 +186,20 @@
   	}
   	else {
    	transition(1); 
-	setTimeout(function(){ transition(0); },250 + 120 + 1430);
-	setTimeout(function(){ runstart(x + 1) },500 + 120 + 1430 + 3420 + 500);
+	timer = setTimeout(function(){ transition(0); },250 + 120 + 1430);
+	timer = setTimeout(function(){ runstart(x + 1) },500 + 120 + 1430 + 3420 + 500);
 	}
   }
 
   function breek(x) {
   	if (x == 0) {
-	setTimeout(function(){ runmiddle1(0) },5580);
+	timer = setTimeout(function(){ runmiddle1(0) },5580);
 	}
 	else if (x == 1) {
-	setTimeout(function(){ runmiddle2(0) },5580);
+	timer = setTimeout(function(){ runmiddle2(0) },5580);
 	}
 	else {
-	setTimeout(function(){ runend(0) },5580);
+	timer = setTimeout(function(){ runend(0) },5580);
 	}
   }
 
@@ -156,8 +209,8 @@
   	}
   	else {
 	transition(1);
-	setTimeout(function(){ transition(0); },250 + 120 + 1430);
-	setTimeout(function(){ runmiddle1(x + 1) },500 + 120 + 1430 + 3420 + 500);
+	timer = setTimeout(function(){ transition(0); },250 + 120 + 1430);
+	timer = setTimeout(function(){ runmiddle1(x + 1) },500 + 120 + 1430 + 3420 + 500);
 	}
   }
 
@@ -167,34 +220,76 @@
   	}
   	else {
  	transition(1);
-	setTimeout(function(){ transition(0); },250 + 120 + 1430);
-	setTimeout(function(){ runmiddle2(x + 1) },500 + 120 + 1430 + 3420 + 500);
+	timer = setTimeout(function(){ transition(0); },250 + 120 + 1430);
+	timer = setTimeout(function(){ runmiddle2(x + 1) },500 + 120 + 1430 + 3420 + 500);
 	}
   }
 
     function runend(x) {
   	if (x == 12) {
-  		setTimeout(function(){ done() },5580);
+  		done();
   	}
   	else {
   	transition(1);
-	setTimeout(function(){ transition(0); },250 + 120 + 1430);
-	setTimeout(function(){ runend(x + 1) },500 + 120 + 1430 + 3420 + 500);
+	timer = setTimeout(function(){ transition(0); },250 + 120 + 1430);
+	timer = setTimeout(function(){ runend(x + 1) },500 + 120 + 1430 + 3420 + 500);
 	}
+  }
+
+  function done() {
+  	document.getElementById('tits').innerHTML = 'You lasted: <br>' + String(secondsover10).toHHMMSS();
+  	document.getElementById('endcard').style.width = '100%';
+  	setTimeout(function(){ document.getElementById('tits').style.opacity = '1'
+  							document.getElementById('cross').style.opacity = '1';
+  							 document.getElementById('down').style.height = '0%';
+  								document.getElementById('up').style.height = '0%';
+  							document.getElementById('progress').style.transitionDuration = '202s';},600);
+ 
+  	 clearTimeout(timer);
+	clearInterval(interval);
+	 document.getElementById('progress').style.transitionDuration = '0s';
+	 document.getElementById('progress').style.height = '0%';
+	 
+  
   }
 
   function clock() {
   	secondsover10 = secondsover10 + 1;
-  	console.log(secondsover10);
   	document.getElementById('back').innerHTML = Math.round(secondsover10/202*100) + '%';
   }
 
+  function close() {
+  	document.getElementById('endcard').style.height = '0%'; 
+  	
+  	setTimeout(function(){ document.getElementById('endcard').style.height = '100%';},2000);
+  	setTimeout(function(){ document.getElementById('endcard').style.width = '0%';
+  							document.getElementById('tits').innerHTML = '';},1000);
+  	document.getElementById('tits').style.opacity = '0';
 
+  	document.getElementById('cross').style.opacity = '0';
+
+  	
+
+  	
+ 
+  }
+  String.prototype.toHHMMSS = function () {
+    var sec_num = parseInt(this, 10); // don't forget the second param
+    var hours   = Math.floor(sec_num / 3600);
+    var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+    var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+    if (hours   < 10) {hours   = "0"+hours;}
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return minutes+':'+seconds;
+}
+  	
   function start() {
   runstart(0);	
   secondsover10 = 0;
   document.getElementById('progress').style.height = '100%';
-  setInterval(function(){ clock(); }, 1000);
+  interval = setInterval(function(){ clock(); }, 1000);
   }
   </script>
 </body>
