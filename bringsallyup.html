@@ -1,0 +1,201 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <meta charset="utf-8">
+
+  <title>Bring Sally Up</title>
+  <meta name="mobile-web-app-capable" content="yes">
+  <style>
+  * {
+  margin:0 auto;
+  background-color:#efebe3; 
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  }
+  #title {
+  			font-size: 4em;
+  			font-family: 'Roboto';
+  			font-weight: 400;
+  			margin: 10px;
+  }
+  #container {
+  	 		top: 50%;
+		    left: 50%;
+		    position: fixed;
+		   	transform: translate(-50%, -50%);
+		    -webkit-transform: translate(-50%, -50%);
+  }
+  #button {
+  			display: block;
+			padding: 15px 25px;
+			font-size: 3em;
+			  cursor: pointer;
+			  text-align: center;
+			  outline: none;
+			  color:white;
+			  color: #fff;
+			  background-color: #669ACC;
+			  border: none;
+			  border-radius: 20px;
+			  box-shadow: 0 7px #476A90;
+			  font-family: 'Roboto';
+			  font-weight: 400;
+			  letter-spacing: 3px;
+		     	 transition-duration: 0.1s;
+  }
+  #button:active {
+ 	 box-shadow: 0 0px;
+ 	 transform: translateY(7px);
+ 	 transition-duration: 0.1s;
+ 	  outline: none;
+  }
+  #button:focus {
+    outline: none;
+}
+  #up {
+  	text-align:center;
+  background-color: #7ef2b1;
+  position:fixed;
+  width:100%;
+  height:0%;
+  bottom:0px;
+  transition-duration:0.5s; 
+  transition-timing-function: linear;
+  }
+#down  {
+	text-align:center;
+  background-color: #ff8f84;
+  position:fixed;
+  width:100%;
+  height:0%;
+  top:0px;
+  transition-duration:0.5s; 
+  transition-timing-function: linear;
+  }
+  #back{
+  opacity: 0;
+  top:0.5em;
+  right:0.8em;
+  position:fixed;
+  font-family: 'Roboto';
+  font-size: 3em;
+  }
+  #progress{
+  position:fixed;
+  width:1%;
+  height:0%;
+  background-color: black;
+  left:0px;
+  transition-duration:202s;
+  }
+
+  </style>
+  
+
+</head>
+
+
+<body>
+<div id='container'>
+<h1 id='title'>Sally Up Timer</h1>
+<button id='button' onclick='start()'>Begin</button>
+</div>
+<div id='up'></div>
+
+<div id='down'></div>
+<div id='progress'> </div>
+<h1 id='back'> up</h1>
+
+
+
+  <script>
+
+  document.documentElement.requestFullscreen();
+  var secondsover10;
+
+  function transition(x) {
+  	if (x == 1) {
+  		document.getElementById('up').style.height = '100%';
+  		document.getElementById('down').style.height = '0%';
+  	}
+  	else if (x == 0) {
+  		document.getElementById('up').style.height = '0%';
+  		document.getElementById('down').style.height = '100%';
+  	}
+  }
+
+
+  function runstart(x) {
+  	if (x == 8 ) {
+  		breek(0);
+  	}
+  	else {
+   	transition(1); 
+	setTimeout(function(){ transition(0); },250 + 120 + 1430);
+	setTimeout(function(){ runstart(x + 1) },500 + 120 + 1430 + 3420 + 500);
+	}
+  }
+
+  function breek(x) {
+  	if (x == 0) {
+	setTimeout(function(){ runmiddle1(0) },5580);
+	}
+	else if (x == 1) {
+	setTimeout(function(){ runmiddle2(0) },5580);
+	}
+	else {
+	setTimeout(function(){ runend(0) },5580);
+	}
+  }
+
+    function runmiddle1(x) {
+  	if (x == 5) {
+  		breek(1);
+  	}
+  	else {
+	transition(1);
+	setTimeout(function(){ transition(0); },250 + 120 + 1430);
+	setTimeout(function(){ runmiddle1(x + 1) },500 + 120 + 1430 + 3420 + 500);
+	}
+  }
+
+    function runmiddle2(x) {
+  	if (x == 5) {
+  		breek(2);
+  	}
+  	else {
+ 	transition(1);
+	setTimeout(function(){ transition(0); },250 + 120 + 1430);
+	setTimeout(function(){ runmiddle2(x + 1) },500 + 120 + 1430 + 3420 + 500);
+	}
+  }
+
+    function runend(x) {
+  	if (x == 12) {
+  		setTimeout(function(){ done() },5580);
+  	}
+  	else {
+  	transition(1);
+	setTimeout(function(){ transition(0); },250 + 120 + 1430);
+	setTimeout(function(){ runend(x + 1) },500 + 120 + 1430 + 3420 + 500);
+	}
+  }
+
+  function clock() {
+  	secondsover10 = secondsover10 + 1;
+  	console.log(secondsover10);
+  	document.getElementById('back').innerHTML = Math.round(secondsover10/202*100) + '%';
+  }
+
+
+  function start() {
+  runstart(0);	
+  secondsover10 = 0;
+  document.getElementById('progress').style.height = '100%';
+  setInterval(function(){ clock(); }, 1000);
+  }
+  </script>
+</body>
+</html>
