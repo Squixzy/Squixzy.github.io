@@ -12,6 +12,7 @@
   	margin:0 auto;
   }
   body {
+  overflow: hidden;
   margin:0 auto;
   background-color:#efebe3; 
   user-select: none;
@@ -55,7 +56,7 @@
 			  background-color: #669ACC;
 			  border: none;
 			  border-radius: 20px;
-			  box-shadow: 0 7px #476A90;
+			  box-shadow: 0 9px #476A90;
 			  font-family: 'Roboto';
 			  font-weight: 400;
 			  letter-spacing: 3px;
@@ -63,7 +64,7 @@
   }
   #button:active {
  	 box-shadow: 0 0px;
- 	 transform: translateY(7px);
+ 	 transform: translateY(9px);
  	 transition-duration: 0.1s;
  	  outline: none;
   }
@@ -151,12 +152,12 @@
 <div id='down'></div>
 <div id='progress'> </div>
 <div id='endcard'> </div>
-						<h1 id='back'> up</h1>
+						<!--<h1 id='back'> up</h1>  -->
 <div id='endcard'> </div>
 <div id='ender' class='container'>
 <h1 id='tits'></h1>
 </div>
-<h1 id='cross' onclick="close();">×</h1>
+<h1 id='cross' onclick="close();"></h1>
 <div id='placeender'></div>
 
   <script>
@@ -238,15 +239,16 @@
 
   function done() {
   	document.getElementById('tits').innerHTML = 'You lasted: <br>' + String(secondsover10).toHHMMSS();
+  	document.getElementById('cross').innerHTML = '×';
   	document.getElementById('endcard').style.width = '100%';
   	setTimeout(function(){ document.getElementById('tits').style.opacity = '1'
   							document.getElementById('cross').style.opacity = '1';
   							 document.getElementById('down').style.height = '0%';
   								document.getElementById('up').style.height = '0%';
   							document.getElementById('progress').style.transitionDuration = '202s';},600);
- 
+   	setTimeout(function(){ document.getElementById('down').style.height = '0%';},1500);
   	 clearTimeout(timer);
-	clearInterval(interval);
+		clearInterval(interval);
 	 document.getElementById('progress').style.transitionDuration = '0s';
 	 document.getElementById('progress').style.height = '0%';
 	 
@@ -255,7 +257,6 @@
 
   function clock() {
   	secondsover10 = secondsover10 + 1;
-  	document.getElementById('back').innerHTML = Math.round(secondsover10/202*100) + '%';
   }
 
   function close() {
